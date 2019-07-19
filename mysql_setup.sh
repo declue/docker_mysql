@@ -1,16 +1,24 @@
 #!/bin/bash
  
-__mysql_config() {
+__mysql_start() {
     echo "Running the mysql_config function."
-    /usr/bin/mysqld_safe & 
+    /usr/bin/mysqld_safe --skip-grant & 
     sleep 10
 }
  
-__start_mysql() {
-    mysqladmin -u root password dlatlqlqjs
-    mysql -uroot -pfoobar -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'dlatlqlqjs' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-    sleep 10
+__mysql_config() {
+    mysqladmin -u root -p$1
+    sleep 3
+    command="GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$1' WITH GRANT OPTION; FLUSH PRIVILEGES;" 
+    echo $command
+    mysql -uroot -p$1 -e $command 
+    sleep 5
 }
- 
+
+echo 'START mysqld'
+__mysql_start $1
+
+echo 'ROOT PASSWORD : '$1
+echo 'CONFIG remote-access'
 __mysql_config
-__start_mysql
+echo 'DONE'
