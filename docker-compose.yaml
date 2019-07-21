@@ -2,10 +2,10 @@ version: '3.1'
 
 services: 
   mymysql:
-    image: declue/mysql:5.7
+    build : . 
+    image : declue/mysql:5.7
     container_name: mymysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports: 
       - '3306:3306'
-    

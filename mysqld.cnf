@@ -29,16 +29,24 @@ datadir		= /var/lib/mysql
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
 
+# for atlassian services
 default-storage-engine=INNODB
 character_set_server=utf8mb4
 innodb_default_row_format=DYNAMIC
 innodb_large_prefix=ON
 innodb_file_format=Barracuda
 innodb_log_file_size=2G
-
-skip-character-set-client-handshake
 collation-server=utf8mb4_unicode_ci
 max_allowed_packet=512MB
 
-bind-address=0.0.0.0
+# for remote address
+bind-address=*
+
+# for ssl
+skip-character-set-client-handshake
+ssl-ca=/etc/certs/ca.pem
+ssl-cert=/etc/certs/server-cert.pem
+ssl-key=/etc/certs/server-key.pem
+
+
 
