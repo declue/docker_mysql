@@ -19,6 +19,7 @@
 # For explanations see
 # http://dev.mysql.com/doc/mysql/en/server-system-variables.html
 
+
 [mysqld]
 pid-file	= /var/run/mysqld/mysqld.pid
 socket		= /var/run/mysqld/mysqld.sock
@@ -29,20 +30,23 @@ datadir		= /var/lib/mysql
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
 
+user=mysql
+
 # for atlassian services
 default-storage-engine=INNODB
 character_set_server=utf8mb4
 innodb_default_row_format=DYNAMIC
 innodb_large_prefix=ON
-innodb_file_format=Barracuda
 innodb_log_file_size=2G
 collation-server=utf8mb4_unicode_ci
 max_allowed_packet=512MB
+explicit_defaults_for_timestamp=1
 
 # for remote address
 bind-address=*
 
 # for ssl
+require-secure-transport = ON
 skip-character-set-client-handshake
 ssl-ca=/etc/certs/ca.pem
 ssl-cert=/etc/certs/server-cert.pem
