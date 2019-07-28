@@ -41,6 +41,8 @@ innodb_log_file_size=2G
 collation-server=utf8mb4_unicode_ci
 max_allowed_packet=512MB
 explicit_defaults_for_timestamp=1
+transaction-isolation=READ-COMMITTED
+binlog_format=row
 
 # for remote address
 bind-address=*
