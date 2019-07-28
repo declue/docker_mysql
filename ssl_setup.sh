@@ -1,10 +1,11 @@
 echo "mkdir /etc/certs"
 
 
-if [  -d "/etc/certs" ]; then
+if [  -f "/etc/certs/client-cert.pem" ]; then
 	echo "/etc/certs is already exist"
 	exit 0
 fi
+rm -rf /etc/certs/*
 
 mkdir -p /etc/certs
 cd /etc/certs
